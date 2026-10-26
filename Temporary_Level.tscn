@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://e2no7ea7due6"]
+
+[ext_resource type="PackedScene" uid="uid://dp7sxe5xl5shk" path="res://level/temporary_level.tscn" id="1_lus61"]
+[ext_resource type="PackedScene" uid="uid://dgxelf4sytmva" path="res://player/player.tscn" id="2_umjjx"]
+
+[node name="Node3D" type="Node3D" unique_id=62285528]
+
+[node name="TemporaryLevel" parent="." unique_id=1990066259 instance=ExtResource("1_lus61")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09042394, 0, 1.1508203)
+
+[node name="CharacterBody3D" parent="." unique_id=1532267701 instance=ExtResource("2_umjjx")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.8321233, 0.5, 5.4352417)
+
+[editable path="TemporaryLevel"]
