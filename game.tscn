@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dgxelf4sytmva" path="res://player/player.tscn" id="1_80nbo"]
 [ext_resource type="Texture2D" uid="uid://cduqwf5knoflo" path="res://level/checkboard.png" id="1_e2o6t"]
 [ext_resource type="Material" uid="uid://cefavwl2jtyf1" path="res://level/Bridge.tres" id="2_feb5d"]
+[ext_resource type="PackedScene" uid="uid://pifulpqb24o" path="res://mob/mob.tscn" id="4_fc0e3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2o6t"]
 albedo_color = Color(0.17254902, 0.6, 0.36078432, 1)
@@ -228,6 +229,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.227026, 0, 8.404603)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1178310055]
 transform = Transform3D(1, 0, 0, 0, 0.7071069, 0.7071068, 0, -0.7071068, 0.7071069, 0, 4, 2.5)
+shadow_bias = 0.0
+shadow_normal_bias = 0.0
+shadow_transmittance_bias = -16.0
+shadow_opacity = 0.0
+shadow_blur = 0.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=533642940]
 environment = SubResource("Environment_673qo")
+
+[node name="Mob" parent="." unique_id=1686953846 instance=ExtResource("4_fc0e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -3)

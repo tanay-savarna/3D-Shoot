@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://cxc44c17lt2db"]
+
+[ext_resource type="PackedScene" uid="uid://dfnklwh7m4l3k" path="res://mob/bat/bat_model.glb" id="1_1he7g"]
+[ext_resource type="Material" uid="uid://vhom483kpk4w" path="res://mob/bat/bat_material.tres" id="2_030dj"]
+[ext_resource type="Script" uid="uid://boc1yaq8l4nmm" path="res://mob/bat/bat_model.gd" id="2_vgr6s"]
+
+[sub_resource type="Animation" id="Animation_vgr6s"]
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D/bat:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.20000002),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.3, 1.3, 1.3), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D/bat:surface_material_override/0:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.20000002),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0.08235294, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_shx3p"]
+_data = {
+&"hurt": SubResource("Animation_vgr6s")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_scfiv"]
+animation = &"custom/hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qf8hm"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_shx3p"]
+mix_mode = 1
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_673qo"]
+graph_offset = Vector2(-170.62834, 20.013334)
+nodes/Idle/node = SubResource("AnimationNodeAnimation_qf8hm")
+nodes/Idle/position = Vector2(74, 205.3239)
+nodes/Hurt/node = SubResource("AnimationNodeAnimation_scfiv")
+nodes/Hurt/position = Vector2(280, 280)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_shx3p")
+nodes/OneShot/position = Vector2(520, 120)
+node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Idle", &"OneShot", 1, &"Hurt"]
+
+[node name="bat_model" unique_id=45227199 instance=ExtResource("1_1he7g")]
+transform = Transform3D(1.5101132, 0, 0, 0, 1.5196277, 0, 0, 0, 1.5357357, 0, 0, 0)
+script = ExtResource("2_vgr6s")
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1445412952) index="0" unique_id=785828274]
+bones/0/position = Vector3(0, 0.023599997, 0)
+bones/1/rotation = Quaternion(0.19577281, -0.014410294, -0.6307063, 0.75078285)
+bones/2/rotation = Quaternion(0.17633784, 0.0787768, 0.40033138, 0.8957869)
+bones/3/rotation = Quaternion(0.12464244, 0.09958785, 0.36301702, 0.91802245)
+bones/4/rotation = Quaternion(0.19577281, 0.014410294, 0.6307063, 0.75078285)
+bones/5/rotation = Quaternion(0.17633784, -0.0787768, -0.40033138, 0.8957869)
+bones/6/rotation = Quaternion(0.12464244, -0.09958785, -0.36301702, 0.91802245)
+bones/7/position = Vector3(0.1309921, -0.22739176, -0.087851465)
+bones/7/rotation = Quaternion(0.26196837, 0.08345512, 0.26575127, 0.9240044)
+bones/8/rotation = Quaternion(3.762813e-08, 0.64496267, 0.76421404, 2.5537586e-08)
+bones/10/position = Vector3(-0.1309921, -0.22739176, -0.087851465)
+bones/10/rotation = Quaternion(0.26196837, -0.083455116, -0.26575127, 0.9240044)
+bones/11/rotation = Quaternion(2.5762935e-08, 0.64496267, 0.76421404, 3.2204834e-08)
+
+[node name="bat" parent="Armature/Skeleton3D" index="0" unique_id=1755438058]
+surface_material_override/0 = ExtResource("2_030dj")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=75354690]
+libraries/custom = SubResource("AnimationLibrary_shx3p")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1157208278]
+unique_name_in_owner = true
+deterministic = false
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeBlendTree_673qo")
+anim_player = NodePath("../AnimationPlayer")
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
