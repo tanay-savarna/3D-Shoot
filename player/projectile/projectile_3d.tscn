@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cap1woocn47jm"]
+
+[ext_resource type="PackedScene" uid="uid://bn7cpusfmmjju" path="res://player/projectile/projectile_model.glb" id="1_ndq6i"]
+[ext_resource type="Shader" uid="uid://b4wc5wsyakc0a" path="res://player/projectile/projectile.gdshader" id="2_chfaf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hgguu"]
+render_priority = 0
+shader = ExtResource("2_chfaf")
+shader_parameter/tail_color = Color(0.9172834, 0.7225359, 7.70092e-07, 1)
+shader_parameter/head_color = Color(0.790631, 0.36487877, 3.85046e-07, 1)
+
+[node name="Projectile3D" unique_id=562681622 instance=ExtResource("1_ndq6i")]
+
+[node name="Projectile" parent="." index="0" unique_id=1768419605]
+material_override = SubResource("ShaderMaterial_hgguu")

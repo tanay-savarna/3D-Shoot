@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cknvk0q52je2i" path="res://player/simple_gun/gun_model.glb" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://6c0ikkj2urxc" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="Script" uid="uid://bsf1jv52bn3re" path="res://player/camera_3d.gd" id="2_yw30f"]
 [ext_resource type="Texture2D" uid="uid://dffsc7kphsy0k" path="res://player/reticle.png" id="3_g1dw6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_673qo"]
@@ -16,9 +17,14 @@ shape = SubResource("CapsuleShape3D_673qo")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=744681968]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4800372, 0)
+script = ExtResource("2_yw30f")
 
 [node name="gun_model" parent="Camera3D" unique_id=2036862608 instance=ExtResource("1_oul6g")]
-transform = Transform3D(-0.3315447, 0, 0.05740822, 0, 0.33647823, 0, -0.05740822, 0, -0.3315447, 0.57684606, -0.28256273, -0.6043112)
+transform = Transform3D(-0.33611736, 0, -0.0155784, 0, 0.3364782, 0, 0.0155784, 0, -0.33611736, 0.57684606, -0.28256273, -0.6043112)
+
+[node name="Marker3D" type="Marker3D" parent="Camera3D" unique_id=1353432335]
+unique_name_in_owner = true
+transform = Transform3D(0.983289, 0, -0.1820516, 0, 1, 0, 0.1820516, 0, 0.983289, 0.573803, -0.26833463, -0.78737867)
 
 [node name="Reticle" type="TextureRect" parent="." unique_id=1448484633]
 anchors_preset = 8
@@ -34,3 +40,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_g1dw6")
 expand_mode = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=1877128198]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
