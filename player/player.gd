@@ -76,3 +76,4 @@ func shoot_bullet():
 	
 	
 	%Timer.start()
+	%AudioStreamPlayer.play()

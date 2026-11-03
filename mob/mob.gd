@@ -8,6 +8,8 @@ var speed = randf_range(2.5, 5.5)
 @onready var bat_model = %bat_model
 @onready var timer = %Timer
 @onready var player = get_node("/root/Game/Player")
+@onready var hurt = %Hurt
+@onready var ko = %KO
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta):
@@ -25,6 +27,7 @@ func take_damage():
 	bat_model.hurt()
 	
 	health -= 1
+	hurt.play()
 	
 	if health == 0:
 		set_physics_process(false)
@@ -36,6 +39,7 @@ func take_damage():
 		apply_central_impulse(direction * 15.0 + random_upward_force)
 		timer.start()
 		died.emit()
+		ko.play()
 
 
 func _on_timer_timeout() -> void:

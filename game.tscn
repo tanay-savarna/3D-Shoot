@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dbiqqx0gdil6r" path="res://mob/spawner/mob_spawner_3d.tscn" id="5_7jktm"]
 [ext_resource type="FontFile" uid="uid://v1x43spg70sb" path="res://Burbank Big Condensed Black.ttf" id="5_ryrav"]
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_673qo"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2o6t"]
 albedo_color = Color(0.17254902, 0.6, 0.36078432, 1)
 albedo_texture = ExtResource("1_e2o6t")
@@ -82,6 +84,12 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node3D" unique_id=1128414996]
 script = ExtResource("1_ryrav")
+
+[node name="KillPlane" type="Area3D" parent="." unique_id=1758114089]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillPlane" unique_id=1496142201]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 0)
+shape = SubResource("WorldBoundaryShape3D_673qo")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1340059731]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -5, 7.5)
@@ -304,5 +312,6 @@ offset_bottom = 68.0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_673qo")
 
+[connection signal="body_entered" from="KillPlane" to="." method="_on_kill_plane_body_entered"]
 [connection signal="mob_spawned" from="MobSpawner3D" to="." method="_on_mob_spawner_3d_mob_spawned"]
 [connection signal="mob_spawned" from="MobSpawner3D2" to="." method="_on_mob_spawner_3d_2_mob_spawned"]

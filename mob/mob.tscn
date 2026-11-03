@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bs5l6kqwnvmi4" path="res://mob/mob.gd" id="1_6jlfs"]
 [ext_resource type="PackedScene" uid="uid://cxc44c17lt2db" path="res://mob/bat/bat_model.tscn" id="1_7b8ug"]
+[ext_resource type="AudioStream" uid="uid://b6y00iocbglt4" path="res://mob/mob_take_damage.wav" id="3_mixeo"]
+[ext_resource type="AudioStream" uid="uid://cj6cvgdir8te3" path="res://mob/mob_ko.wav" id="4_jkfaf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_673qo"]
 radius = 0.57478076
@@ -18,7 +20,14 @@ shape = SubResource("SphereShape3D_673qo")
 
 [node name="Timer" type="Timer" parent="." unique_id=1148861641]
 unique_name_in_owner = true
-wait_time = 3.5
 one_shot = true
+
+[node name="Hurt" type="AudioStreamPlayer3D" parent="." unique_id=1169807291]
+unique_name_in_owner = true
+stream = ExtResource("3_mixeo")
+
+[node name="KO" type="AudioStreamPlayer3D" parent="." unique_id=289258016]
+unique_name_in_owner = true
+stream = ExtResource("4_jkfaf")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
