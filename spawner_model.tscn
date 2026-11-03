@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://cntv8gfyclqw1"]
+
+[ext_resource type="PackedScene" uid="uid://dokm4csot7bn0" path="res://mob/spawner/spawner_model.glb" id="1_m0y2u"]
+[ext_resource type="Shader" uid="uid://cfnwyva3u4qeb" path="res://mob/spawner/spawner_halo.gdshader" id="2_aconh"]
+[ext_resource type="Material" uid="uid://bh1ego7bi1olb" path="res://mob/spawner/spawner_screen_material.tres" id="3_v3jaq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5napd"]
+render_priority = 0
+shader = ExtResource("2_aconh")
+shader_parameter/color = Color(0.14509805, 0.5764706, 0.40392157, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h75bt"]
+albedo_color = Color(1, 0.48235294, 0.83137256, 1)
+metallic = 0.43
+roughness = 0.13
+rim_enabled = true
+rim = 0.4
+rim_tint = 0.35
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lfexp"]
+albedo_color = Color(0.4506483, 0.4506483, 0.45064825, 1)
+metallic = 0.12
+roughness = 0.21
+rim_enabled = true
+
+[sub_resource type="Animation" id="Animation_hc4kq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.0943952, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ifhgv"]
+resource_name = "rotation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -2.0943952, 0), Vector3(0, 2.0943952, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k77x5"]
+_data = {
+&"RESET": SubResource("Animation_hc4kq"),
+&"rotation": SubResource("Animation_ifhgv")
+}
+
+[node name="spawner_model" unique_id=674293019 instance=ExtResource("1_m0y2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4393826, 0)
+
+[node name="halo" parent="." index="0" unique_id=1549772259]
+material_override = SubResource("ShaderMaterial_5napd")
+
+[node name="Body" parent="." index="1" unique_id=425265478]
+surface_material_override/0 = SubResource("StandardMaterial3D_h75bt")
+surface_material_override/1 = ExtResource("3_v3jaq")
+
+[node name="Top" parent="." index="2" unique_id=2133498869]
+surface_material_override/0 = SubResource("StandardMaterial3D_lfexp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=950370935]
+libraries/ = SubResource("AnimationLibrary_k77x5")
+autoplay = &"rotation"

@@ -16,3 +16,5 @@ shape = SubResource("SphereShape3D_673qo")
 
 [node name="Projectile3D" parent="." unique_id=562681622 instance=ExtResource("1_kixxk")]
 transform = Transform3D(-1.3113417e-08, 0, 0.29999998, 0, 0.3, 0, -0.3, 0, -1.3113416e-08, 0, 0, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -15,3 +15,10 @@ unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=777268706]
 shape = SubResource("SphereShape3D_673qo")
+
+[node name="Timer" type="Timer" parent="." unique_id=1148861641]
+unique_name_in_owner = true
+wait_time = 3.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
