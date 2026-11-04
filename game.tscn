@@ -76,7 +76,7 @@ fog_density = 0.0158
 fog_height = -0.4
 fog_height_density = 0.3537
 
-[sub_resource type="LabelSettings" id="LabelSettings_673qo"]
+[sub_resource type="LabelSettings" id="LabelSettings_ryrav"]
 font = ExtResource("5_ryrav")
 font_size = 50
 outline_size = 10
@@ -303,14 +303,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -53.1)
 [node name="MobSpawner3D2" parent="." unique_id=1729999474 instance=ExtResource("5_7jktm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 0, -53.1)
 
-[node name="Label" type="Label" parent="." unique_id=1890019226]
+[node name="Label" type="Label" parent="." unique_id=951078803]
 unique_name_in_owner = true
 offset_left = 26.0
 offset_top = 17.0
 offset_right = 173.0
 offset_bottom = 68.0
-text = "Score: 0"
-label_settings = SubResource("LabelSettings_673qo")
+text = "Score:0"
+label_settings = SubResource("LabelSettings_ryrav")
 
 [connection signal="body_entered" from="KillPlane" to="." method="_on_kill_plane_body_entered"]
 [connection signal="mob_spawned" from="MobSpawner3D" to="." method="_on_mob_spawner_3d_mob_spawned"]
