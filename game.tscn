@@ -309,7 +309,7 @@ offset_left = 26.0
 offset_top = 17.0
 offset_right = 173.0
 offset_bottom = 68.0
-text = "Score:0"
+text = "Score: 0"
 label_settings = SubResource("LabelSettings_ryrav")
 
 [connection signal="body_entered" from="KillPlane" to="." method="_on_kill_plane_body_entered"]
