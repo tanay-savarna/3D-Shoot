@@ -79,8 +79,48 @@ fog_height_density = 0.3537
 [sub_resource type="LabelSettings" id="LabelSettings_ryrav"]
 font = ExtResource("5_ryrav")
 font_size = 50
+font_color = Color(0.9125159, 0.7053226, 0.6929697, 1)
 outline_size = 10
-outline_color = Color(0, 0, 0, 1)
+outline_color = Color(0.41960785, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eow3j"]
+font = ExtResource("5_ryrav")
+font_size = 100
+font_color = Color(0.9125159, 0.7053226, 0.6929697, 1)
+outline_size = 20
+outline_color = Color(0.41960785, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ljvas"]
+bg_color = Color(0.0627451, 0.09019608, 0.14509805, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.27450982, 0.3254902, 0.41568628, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 25.0
+expand_margin_top = 60.0
+expand_margin_right = 25.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_673qo"]
+bg_color = Color(0.20392157, 0.16078432, 0.10980392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.6156863, 0.19607843, 1)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nk6u"]
+bg_color = Color(0.34901962, 0.2509804, 0.14509805, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_673qo"]
+font = ExtResource("5_ryrav")
+font_size = 30
 
 [node name="Game" type="Node3D" unique_id=1128414996]
 script = ExtResource("1_ryrav")
@@ -92,7 +132,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 0)
 shape = SubResource("WorldBoundaryShape3D_673qo")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1340059731]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -5, 7.5)
+transform = Transform3D(0.9999957, -0.0024266255, 0.0016226883, 0.0024306758, 0.9999939, -0.0024912243, -0.0016166149, 0.0024951699, 0.9999956, -1, -5, 7.5)
 use_collision = true
 size = Vector3(14, 10, 15)
 material = SubResource("StandardMaterial3D_e2o6t")
@@ -284,6 +324,7 @@ size = Vector3(3, 1, 3)
 material = SubResource("StandardMaterial3D_lc2xo")
 
 [node name="Player" parent="." unique_id=1532267701 instance=ExtResource("1_80nbo")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.727026, 0, -7.995397)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1178310055]
@@ -311,6 +352,76 @@ offset_right = 173.0
 offset_bottom = 68.0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_ryrav")
+
+[node name="Label2" type="Label" parent="." unique_id=1159327915]
+unique_name_in_owner = true
+offset_left = 540.0
+offset_top = 16.0
+offset_right = 1270.0
+offset_bottom = 117.0
+theme_override_font_sizes/font_size = 100
+label_settings = SubResource("LabelSettings_eow3j")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=699868827]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=307907695]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 115)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -421.0
+offset_top = -1007.0
+offset_right = -44.0
+offset_bottom = -843.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ljvas")
+
+[node name="Ability Panel" type="VBoxContainer" parent="CanvasLayer/PanelContainer" unique_id=1985547533]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RapidFireButton" type="Button" parent="CanvasLayer/PanelContainer/Ability Panel" unique_id=483620510]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 48)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ryrav")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_673qo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6nk6u")
+text = "🔥 RAPID FIRE (10 Kills) (R) - 0"
+
+[node name="JetpackButton" type="Button" parent="CanvasLayer/PanelContainer/Ability Panel" unique_id=501031138]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 48)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ryrav")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_673qo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6nk6u")
+text = "🚀 JETPACK (20 Kills) (F) - 0"
+
+[node name="SpeedBoostButton" type="Button" parent="CanvasLayer/PanelContainer/Ability Panel" unique_id=1517841373]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 48)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_ryrav")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_673qo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6nk6u")
+text = "⚡ SPEED BOOST (30 kills) (E) - 0"
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=254132932]
+offset_left = 1612.0
+offset_top = 32.0
+offset_right = 1754.0
+offset_bottom = 63.0
+text = "⚡ ABILITIES"
+label_settings = SubResource("LabelSettings_673qo")
 
 [connection signal="body_entered" from="KillPlane" to="." method="_on_kill_plane_body_entered"]
 [connection signal="mob_spawned" from="MobSpawner3D" to="." method="_on_mob_spawner_3d_mob_spawned"]

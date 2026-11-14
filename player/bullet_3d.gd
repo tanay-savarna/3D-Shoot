@@ -1,6 +1,6 @@
 extends Area3D
 
-const SPEED = 20.0
+const SPEED = 30.0
 const RANGE = 40.0
 
 var travelled_distance = 0.0
@@ -8,7 +8,7 @@ var travelled_distance = 0.0
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta):
-	position += -transform.basis.z * SPEED * delta
+	global_position += -global_transform.basis.z * SPEED * delta
 	travelled_distance += SPEED * delta
 	if travelled_distance > RANGE:
 		queue_free()

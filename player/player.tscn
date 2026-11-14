@@ -5,8 +5,64 @@
 [ext_resource type="Script" uid="uid://bsf1jv52bn3re" path="res://player/camera_3d.gd" id="2_yw30f"]
 [ext_resource type="Texture2D" uid="uid://dffsc7kphsy0k" path="res://player/reticle.png" id="3_g1dw6"]
 [ext_resource type="AudioStream" uid="uid://dqlj5aw2j5dos" path="res://player/gun_shoot.wav" id="5_qjkh3"]
+[ext_resource type="FontFile" uid="uid://v1x43spg70sb" path="res://Burbank Big Condensed Black.ttf" id="6_g6k8r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_673qo"]
+
+[sub_resource type="Animation" id="Animation_g6k8r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/gun_model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.0952778, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_boad6"]
+resource_name = "gun"
+length = 0.11
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/gun_model:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.0952778, 0), Vector3(-0.2735726, -3.0912545, -0.013610667), Vector3(0, -3.0909781, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rgyib"]
+_data = {
+&"RESET": SubResource("Animation_g6k8r"),
+&"gun": SubResource("Animation_boad6")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mixeo"]
+bg_color = Color(0.04809592, 0.116149, 0.027846064, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkfaf"]
+bg_color = Color(0.34689224, 0.6914802, 0.35328537, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6nk6u"]
+radius = 0.55566406
+height = 2.1313477
 
 [node name="Player" type="CharacterBody3D" unique_id=1532267701]
 script = ExtResource("1_rkbax")
@@ -21,11 +77,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4800372, 0)
 script = ExtResource("2_yw30f")
 
 [node name="gun_model" parent="Camera3D" unique_id=2036862608 instance=ExtResource("1_oul6g")]
-transform = Transform3D(-0.33611736, 0, -0.0155784, 0, 0.3364782, 0, 0.0155784, 0, -0.33611736, 0.57684606, -0.28256273, -0.6043112)
+transform = Transform3D(-0.33611733, 0, -0.015578372, 0, 0.33647808, 0, 0.01557837, 0, -0.3361174, 0.57684606, -0.28256273, -0.6043112)
 
 [node name="Marker3D" type="Marker3D" parent="Camera3D" unique_id=1353432335]
 unique_name_in_owner = true
 transform = Transform3D(0.9963412, 0, 0.08546436, 0.005467294, 0.99795175, -0.063737564, -0.08528931, 0.063971624, 0.9943005, 0.56539047, -0.26833463, -0.78737867)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=985388401]
+libraries/ = SubResource("AnimationLibrary_rgyib")
 
 [node name="Reticle" type="TextureRect" parent="." unique_id=1448484633]
 anchors_preset = 8
@@ -50,3 +109,41 @@ one_shot = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1632669279]
 unique_name_in_owner = true
 stream = ExtResource("5_qjkh3")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=70621619]
+unique_name_in_owner = true
+offset_left = 29.0
+offset_top = 943.0
+offset_right = 268.0
+offset_bottom = 999.0
+theme_override_colors/font_color = Color(0.49477237, 0, 0.18031338, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_mixeo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jkfaf")
+value = 100.0
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HealthBar" unique_id=1780632312]
+clip_contents = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45600003
+anchor_top = 0.5
+anchor_right = 0.45600003
+anchor_bottom = 0.5
+offset_left = -5.984009
+offset_top = -19.0
+offset_right = 63.01599
+offset_bottom = 75.0
+theme_override_colors/default_color = Color(0.9137255, 0.7058824, 0.69411767, 1)
+theme_override_colors/font_outline_color = Color(0.41960785, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("6_g6k8r")
+theme_override_font_sizes/normal_font_size = 45
+text = "HP"
+
+[node name="DamageArea" type="Area3D" parent="." unique_id=1418285667]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea" unique_id=2079145527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97312486, 0)
+shape = SubResource("CapsuleShape3D_6nk6u")

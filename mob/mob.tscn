@@ -8,7 +8,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_673qo"]
 radius = 0.57478076
 
-[node name="Mob" type="RigidBody3D" unique_id=1686953846]
+[node name="Mob" type="RigidBody3D" unique_id=1686953846 groups=["mob"]]
 gravity_scale = 0.0
 script = ExtResource("1_6jlfs")
 
@@ -20,6 +20,7 @@ shape = SubResource("SphereShape3D_673qo")
 
 [node name="Timer" type="Timer" parent="." unique_id=1148861641]
 unique_name_in_owner = true
+wait_time = 0.75
 one_shot = true
 
 [node name="Hurt" type="AudioStreamPlayer3D" parent="." unique_id=1169807291]
